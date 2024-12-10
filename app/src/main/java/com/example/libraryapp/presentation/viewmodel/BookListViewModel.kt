@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 class BookListViewModel : ViewModel() {
 
     private val getBooksUseCase = UseCaseProvider.provideGetBooksUseCase()
-   // private val addBookUseCase = UseCaseProvider.provideAddBookUseCase()
+    private val addBookUseCase = UseCaseProvider.provideAddBookUseCase()
 
     private val _books = MutableLiveData<List<Book>>()
     val books: LiveData<List<Book>> = _books
@@ -40,12 +40,12 @@ class BookListViewModel : ViewModel() {
         }
     }
 
-    fun addBook(title: String, author: String, year: Int, description: String) {
+    fun addBook(book: Book) {
         viewModelScope.launch {
             _isLoading.value = true
             try {
-           //     addBookUseCase(title, author, year, description)
-                loadBooks() // Recargar lista después de agregar
+                addBookUseCase(book)
+                loadBooks()
                 _error.value = null
             } catch (e: Exception) {
                 _error.value = e.message

@@ -77,7 +77,7 @@ object BookDatabase {
 
     fun getBooks(): List<Book> = books.toList()
 
-    fun getBook(id: Int): Book? = books.find { it.id == id }
+    fun getBookById(id: Int): Book? = books.find { it.id == id }
 
     fun addBook(book: Book) {
         books.add(book.copy(id = books.size + 1))

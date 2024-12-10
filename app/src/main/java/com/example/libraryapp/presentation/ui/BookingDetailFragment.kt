@@ -12,7 +12,7 @@ import com.example.libraryapp.R
  * Use the [BookingDetailFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class BookingDetailFragment : Fragment() {
+class BookingDetailFragment : Fragment(R.layout.fragment_booking_detail) {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

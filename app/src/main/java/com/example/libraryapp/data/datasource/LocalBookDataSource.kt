@@ -10,9 +10,9 @@ class LocalBookDataSource {
         return BookDatabase.getBooks()
     }
 
-    suspend fun getBook(id: Int): Book? {
+    suspend fun getBookById(id: Int): Book? {
         delay(500)
-        return BookDatabase.getBook(id)
+        return BookDatabase.getBookById(id)
     }
 
     suspend fun addBook(book: Book) {

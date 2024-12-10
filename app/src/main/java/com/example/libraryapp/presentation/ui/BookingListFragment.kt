@@ -12,13 +12,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.libraryapp.R
 import com.example.libraryapp.databinding.DialogAddBookBinding
 import com.example.libraryapp.databinding.FragmentBookingListBinding
+import com.example.libraryapp.domain.model.Book
 import com.example.libraryapp.presentation.adapter.BookAdapter
 import com.example.libraryapp.presentation.viewmodel.BookListViewModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 
-class BookingListFragment : Fragment(R.layout.fragment_booking_list) {
+
+class BookingListFragment : Fragment() {
 
     private var _binding: FragmentBookingListBinding? = null
     private val binding get() = _binding!!
@@ -76,7 +78,21 @@ class BookingListFragment : Fragment(R.layout.fragment_booking_list) {
             .setView(dialogBinding.root)
             .setPositiveButton("Add") { _, _ ->
                 with(dialogBinding) {
-                   //TODO call the function that add a new book
+                    val title = titleInput.text.toString()
+                    val author = authorInput.text.toString()
+                    val year = yearInput.text.toString().toIntOrNull() ?: 0
+                    val description = descriptionInput.text.toString()
+
+                    val newBook = Book(
+                        id = 0, 
+                        title,
+                        author,
+                        year,
+                        description,
+                        isAvailable = true,
+                        imageUrl = null
+                    )
+                    viewModel.addBook(newBook)
                 }
             }
             .setNegativeButton("Cancel", null)

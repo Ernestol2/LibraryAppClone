@@ -1,9 +1,16 @@
 package com.example.libraryapp.domain.usecase
 
+import com.example.libraryapp.domain.repository.BookRepository
+
 object UseCaseProvider {
     private var getBooksUseCase: GetBooksUseCase? = null
-    //private var getBookDetailUseCase: GetBookDetailUseCase? = null
-    //private var addBookUseCase: AddBookUseCase? = null
+    private var getBookDetailUseCase: GetBookDetailUseCase? = null
+    private var addBookUseCase: AddBookUseCase? = null
+    private lateinit var bookRepository: BookRepository
+
+    fun setBookRepository(repository: BookRepository) {
+        this.bookRepository = repository
+    }
 
     fun provideGetBooksUseCase(): GetBooksUseCase {
         if (getBooksUseCase == null) {
@@ -13,17 +20,18 @@ object UseCaseProvider {
     }
 
     // TODO implement the useCases first
-  /*  fun provideGetBookDetailUseCase(): GetBookDetailUseCase {
+
+   fun provideGetBookDetailUseCase(): GetBookDetailUseCase {
         if (getBookDetailUseCase == null) {
-            getBookDetailUseCase = GetBookDetailUseCase()
+            getBookDetailUseCase = GetBookDetailUseCase(bookRepository)
         }
         return getBookDetailUseCase!!
     }
 
     fun provideAddBookUseCase(): AddBookUseCase {
         if (addBookUseCase == null) {
-            addBookUseCase = AddBookUseCase()
+            addBookUseCase = AddBookUseCase(bookRepository)
         }
         return addBookUseCase!!
-    }*/
+    }
 }

@@ -16,4 +16,12 @@ class BookRepositoryImpl: BookRepository {
         }
     }
 
+    override suspend fun addBook(book: Book) {
+        localDataSource.addBook(book)
+    }
+
+    override suspend fun getBookById(id: Int): Book? {
+        return localDataSource.getBookById(id)
+    }
+
 }
